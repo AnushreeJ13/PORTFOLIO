@@ -4,23 +4,7 @@ import { HERO_CONTENT } from "../constants"; // Ensure this is correctly defined
 import profilePic from "../assets/AnushreeProfile.jpg"; // Check the image path
 
 const Hero = () => {
-    const [displayedText, setDisplayedText] = useState('');
-    const text = "Aspiring SDE"; // The text to type out
-    const typingSpeed = 100; // Speed of the typing effect
-
-    useEffect(() => {
-        let index = 0;
-        const typingInterval = setInterval(() => {
-            if (index < text.length) {
-                setDisplayedText((prev) => prev + text[index]);
-                index += 1;
-            } else {
-                clearInterval(typingInterval); // Stop typing when complete
-            }
-        }, typingSpeed);
-
-        return () => clearInterval(typingInterval); // Cleanup on unmount
-    }, [text]);
+    const text = "Aspiring SDE"; // The text to display
 
     return (
         <div className="border-b border-neutral-900 pb-12 lg:pb-24 lg:mb-35">
@@ -36,12 +20,12 @@ const Hero = () => {
                             Anushree Jain
                         </motion.h1>
                         <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
+                            initial={{ opacity: 0, scale: 0.8 }} // Initial state for animation
+                            animate={{ opacity: 1, scale: 1 }} // Final state for animation
+                            transition={{ duration: 0.5 }} // Animation duration
                             className="bg-gradient-to-r from-pink-300 via-slate-500 to-purple-600 bg-clip-text text-transparent text-4xl lg:text-5xl font-semibold tracking-tighter"
                         >
-                            {displayedText}
+                            {text} {/* Directly displaying the text */}
                         </motion.span>
                         <p className="my-4 lg:my-6 max-w-xl text-lg lg:text-xl font-light tracking-tight text-gray-400 text-center lg:text-left py-4">
                             {HERO_CONTENT} 
